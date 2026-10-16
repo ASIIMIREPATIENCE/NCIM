@@ -1,273 +1,282 @@
 
 import { Link } from "react-router-dom";
-import "./Events.css";
+import "./Programmes.css";
 
-const activities = [
+const programmes = [
   {
     number: "01",
-    category: "Education & learning",
-    title: "Brain Quiz",
-    description:
-      "Brain Quiz activities create opportunities for learners to test their knowledge, think critically and learn through friendly academic competition. They can complement NCIM's focus on children's learning and development.",
-    image: "/media/events/community-learning.jpg",
-    alt: "Young people learning and participating together",
-    connection: "Early Childhood Development",
+    category: "CHILD DEVELOPMENT",
+    title: "Early Childhood Development",
+    introduction:
+      "The early years are an important stage in a child's growth. This programme area focuses on the conditions that help young children learn, develop and begin life with a strong foundation.",
+    audience:
+      "Young children, parents, caregivers and communities supporting early development.",
+    focus: [
+      "Early learning and developmental support",
+      "Caregiver awareness and participation",
+      "Safe, nurturing environments for children",
+    ],
+    image: "/media/programmes/early-childhood.jpg",
+    alt: "Young children taking part in an early learning activity",
+    imageNote: "Learning begins in the early years",
+    linkText: "Enquire about early childhood development",
   },
   {
     number: "02",
-    category: "Arts & expression",
-    title: "Music, Dance and Drama",
-    description:
-      "Music, Dance and Drama (MDD) gives children and young people a way to express ideas, share their talents and participate in group performances. It can also provide a platform for communicating messages that matter to communities.",
-    image: "/media/events/community-gathering.jpg",
-    alt: "A group gathered for a shared community experience",
-    connection: "Children & community participation",
+    category: "CHILD WELLBEING",
+    title: "Child Sponsorship",
+    introduction:
+      "Sponsorship can provide a way for supporters to contribute towards children's wellbeing and development. This programme section will explain NCIM's sponsorship model and how interested supporters can learn more.",
+    audience:
+      "Children and families eligible under NCIM's approved sponsorship arrangements, and prospective sponsors.",
+    focus: [
+      "Understanding sponsorship opportunities",
+      "Learning about eligibility and the application process",
+      "Responsible communication with prospective sponsors",
+    ],
+    image: "/media/programmes/child-sponsorship.jpg",
+    alt: "A schoolchild working in an exercise book at a desk",
+    imageNote: "Every child deserves opportunities to grow",
+    linkText: "Ask about child sponsorship",
   },
   {
     number: "03",
-    category: "Ideas & communication",
-    title: "Debates and educational competitions",
-    description:
-      "Debates and educational competitions encourage participants to research, explain their ideas, listen to others and develop confidence in speaking. These activities put learning into practice beyond the classroom.",
-    image: "/media/events/community-outreach.jpg",
-    alt: "People participating in a group learning activity",
-    connection: "Learning & personal development",
+    category: "WOMEN & COMMUNITIES",
+    title: "Women Empowerment",
+    introduction:
+      "Women's participation can contribute to stronger families and communities. This programme area provides space to explain NCIM's work with women, the opportunities available and the activities that support their participation.",
+    audience:
+      "Women and community groups within NCIM's intended programme communities.",
+    focus: [
+      "Skills development and learning opportunities",
+      "Participation in community initiatives",
+      "Opportunities for collaboration and leadership",
+    ],
+    image: "/media/programmes/women-empowerment.jpg",
+    alt: "Women participating in a practical community training activity",
+    imageNote: "Supporting participation and potential",
+    linkText: "Enquire about women empowerment",
   },
   {
     number: "04",
-    category: "Sport & teamwork",
-    title: "Sports days",
-    description:
-      "Sports activities bring participants together through teamwork, participation and friendly competition. They can create opportunities for children and young people to build relationships and enjoy positive shared experiences.",
-    image: "/media/events/youth-families.jpg",
-    alt: "Young people spending time together in a group",
-    connection: "Children & community engagement",
-  },
-  {
-    number: "05",
-    category: "Faith & fellowship",
+    category: "COMMUNITY FELLOWSHIP",
     title: "Tuesday Fellowship Series",
-    description:
-      "The Tuesday Fellowship Series is one of the programme areas identified for NCIM. This section can share its purpose, themes, participation details and highlights once the organisation's official information is confirmed.",
-    image: "/media/events/community-moments.jpg",
-    alt: "Community members gathered together",
-    connection: "Tuesday Fellowship Series",
+    introduction:
+      "The Tuesday Fellowship Series is a distinct programme area that deserves its own identity. Visitors should be able to understand its purpose, who it welcomes, what takes place during sessions and how to find out about upcoming gatherings.",
+    audience:
+      "People interested in the fellowship and the community it brings together.",
+    focus: [
+      "Purpose and format of fellowship sessions",
+      "Information about upcoming gatherings",
+      "How interested participants can make contact",
+    ],
+    image: "/media/programmes/tuesday-fellowship.jpg",
+    alt: "Community members gathered for a group discussion",
+    imageNote: "Creating space for connection",
+    linkText: "Ask about the Tuesday Fellowship",
   },
 ];
 
-export default function Events() {
+function ProgrammeFeature({ programme, index }) {
   return (
-    <main className="events-page">
-      {/* HERO */}
-      <section className="events-masthead">
-        <div className="events-masthead-copy">
-          <p className="events-eyebrow">NCIM · Events & activities</p>
+    <article
+      className={`programme-feature ${
+        index % 2 === 1 ? "programme-feature-reverse" : ""
+      }`}
+      id={`programme-${programme.number}`}
+    >
+      <div className="programme-feature-image">
+        <img
+          src={programme.image}
+          alt={programme.alt}
+          loading="lazy"
+        />
+        <span className="programme-image-number">
+          {programme.number}
+        </span>
+        <p className="programme-image-note">{programme.imageNote}</p>
+      </div>
 
-          <h1>
-            Learning.
-            <span> Expression.</span>
-            Community.
-          </h1>
+      <div className="programme-feature-content">
+        <span className="programme-category">
+          {programme.category}
+        </span>
 
-          <p className="events-lead">
-            From academic competitions to creative expression, sport and
-            fellowship, activities can bring people together around learning,
-            participation and shared experiences. Explore the activities
-            connected to NCIM's work with children, families and communities.
-          </p>
-
-          <div className="events-masthead-actions">
-            <Link className="events-button events-button-gold" to="/contact">
-              Enquire about activities
-            </Link>
-
-            <Link className="events-text-link" to="/programmes">
-              Explore our programmes <span aria-hidden="true">↗</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className="events-masthead-visual">
-          <img
-            src="/media/events/community-gathering.jpg"
-            alt="People coming together for a shared activity"
-          />
-        </div>
-      </section>
-
-      {/* INTRODUCTION */}
-      <section className="events-introduction">
-        <p className="events-section-label">Why activities matter</p>
-
-        <div className="events-introduction-grid">
-          <h2>
-            Every activity
-            <br />
-            creates an opportunity.
-          </h2>
-
-          <div>
-            <p>
-              Learning does not happen only through formal lessons. Quizzes,
-              performances, debates and sports can help participants practise
-              skills, discover their abilities and build confidence.
-            </p>
-
-            <p>
-              For NCIM, events and activities should connect meaningfully to
-              its wider work supporting children, strengthening families and
-              communities, and empowering women.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* ACTIVITY DIRECTORY */}
-      <section className="events-activities-section" id="activities">
-        <div className="events-activities-heading">
-          <div>
-            <p className="events-section-label">Explore the activities</p>
-            <h2>Where participation comes to life.</h2>
-          </div>
-
-          <p>
-            Discover the different activity areas discussed for NCIM and how
-            they can contribute to learning, expression and community life.
-          </p>
-        </div>
-
-        <div className="events-activity-list">
-          {activities.map((activity) => (
-            <article
-              className="events-activity"
-              key={activity.number}
-              id={`activity-${activity.number}`}
-            >
-              <div className="events-activity-image">
-                <img
-                  src={activity.image}
-                  alt={activity.alt}
-                  loading="lazy"
-                />
-                <span>{activity.number}</span>
-              </div>
-
-              <div className="events-activity-copy">
-                <p className="events-activity-category">
-                  {activity.category}
-                </p>
-
-                <h3>{activity.title}</h3>
-
-                <p>{activity.description}</p>
-
-                <div className="events-activity-connection">
-                  <span>Related area</span>
-                  <strong>{activity.connection}</strong>
-                </div>
-
-                <Link to="/contact" className="events-text-link">
-                  Enquire with NCIM <span aria-hidden="true">↗</span>
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        <p className="events-disclaimer">
-          Activity descriptions explain their intended value. Confirm the
-          current delivery, schedule and participation arrangements with NCIM.
+        <h2>{programme.title}</h2>
+        <p className="programme-introduction">
+          {programme.introduction}
         </p>
-      </section>
 
-      {/* PROGRAMME CONNECTIONS */}
-      <section className="events-programme-section">
-        <div className="events-programme-heading">
-          <p className="events-section-label">Connected to our wider work</p>
-          <h2>Activities are part of a bigger picture.</h2>
-          <p>
-            Events make more sense when visitors can connect them to the
-            programmes and people at the heart of NCIM.
-          </p>
+        <div className="programme-audience">
+          <span>WHO IT IS FOR</span>
+          <p>{programme.audience}</p>
         </div>
 
-        <div className="events-programme-links">
-          <Link to="/programmes" className="events-programme-link">
-            <span>01</span>
-            <div>
-              <h3>Early Childhood Development</h3>
-              <p>Explore NCIM's early childhood programme area.</p>
-            </div>
-            <span className="events-programme-arrow">↗</span>
-          </Link>
+        <h3>Areas to explore</h3>
+        <ul className="programme-focus-list">
+          {programme.focus.map((item) => (
+            <li key={item}>
+              <span aria-hidden="true">↗</span>
+              {item}
+            </li>
+          ))}
+        </ul>
 
-          <Link to="/programmes" className="events-programme-link">
-            <span>02</span>
-            <div>
-              <h3>Child Sponsorship</h3>
-              <p>Learn about the child sponsorship programme area.</p>
-            </div>
-            <span className="events-programme-arrow">↗</span>
-          </Link>
+        <Link to="/contact" className="programme-enquiry">
+          {programme.linkText}
+          <span aria-hidden="true">→</span>
+        </Link>
+      </div>
+    </article>
+  );
+}
 
-          <Link to="/programmes" className="events-programme-link">
-            <span>03</span>
-            <div>
-              <h3>Women Empowerment</h3>
-              <p>Discover the programme area focused on women.</p>
-            </div>
-            <span className="events-programme-arrow">↗</span>
-          </Link>
+export default function Programmes() {
+  return (
+    <main className="programmes-page">
+      <section className="programmes-masthead">
+        <div className="programmes-masthead-top">
+          <span>NCIM / OUR WORK</span>
+          <span>PEOPLE · OPPORTUNITY · COMMUNITY</span>
+        </div>
 
-          <Link to="/programmes" className="events-programme-link">
-            <span>04</span>
-            <div>
-              <h3>Tuesday Fellowship Series</h3>
-              <p>Explore this identified NCIM programme area.</p>
-            </div>
-            <span className="events-programme-arrow">↗</span>
-          </Link>
+        <div className="programmes-masthead-main">
+          <div>
+            <span className="programmes-kicker">
+              GET TO KNOW OUR PROGRAMMES
+            </span>
+            <h1>
+              Where purpose
+              <br />
+              <span>becomes action.</span>
+            </h1>
+          </div>
+
+          <div className="programmes-masthead-description">
+            <p>
+              Explore NCIM's programme areas, understand whom they
+              are intended to serve, and discover how to ask questions
+              or connect with the organisation.
+            </p>
+            <a href="#programme-directory">
+              EXPLORE THE DIRECTORY <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="programmes-masthead-footer">
+          <span>FOUR PROGRAMME AREAS</span>
+          <span>SCROLL TO EXPLORE ↓</span>
         </div>
       </section>
 
-      {/* EVENT UPDATES */}
-      <section className="events-updates-section">
+      <nav
+        className="programme-directory"
+        id="programme-directory"
+        aria-label="Programme directory"
+      >
+        <span className="programme-directory-label">
+          EXPLORE BY AREA
+        </span>
+
+        {programmes.map((programme) => (
+          <a
+            href={`#programme-${programme.number}`}
+            key={programme.number}
+          >
+            <span>{programme.number}</span>
+            {programme.title}
+            <span aria-hidden="true">↘</span>
+          </a>
+        ))}
+      </nav>
+
+      <section className="programmes-editorial-intro">
+        <span className="programmes-section-index">01 / THE BIG PICTURE</span>
         <div>
-          <p className="events-section-label">Event updates</p>
-          <h2>Stay connected with NCIM.</h2>
+          <h2>Different needs. A shared commitment to people.</h2>
           <p>
-            Contact the NCIM team for information about planned activities,
-            confirmed dates, venues and opportunities to participate.
+            Each programme area has a different focus and audience.
+            The information below is organised to help visitors understand
+            the intended purpose of each area and find the right way to
+            contact NCIM for more details.
+          </p>
+        </div>
+      </section>
+
+      <section className="programme-features" aria-label="NCIM programme areas">
+        {programmes.map((programme, index) => (
+          <ProgrammeFeature
+            key={programme.number}
+            programme={programme}
+            index={index}
+          />
+        ))}
+      </section>
+
+      <section className="programmes-information">
+        <div className="programmes-information-heading">
+          <span className="programmes-section-index">
+            02 / TAKING THE NEXT STEP
+          </span>
+          <h2>Interested in a programme?</h2>
+          <p>
+            Start a conversation with NCIM to find out which opportunities
+            are available, who can participate and what steps may be
+            required.
           </p>
         </div>
 
-        <Link className="events-button events-button-dark" to="/contact">
-          Contact NCIM <span aria-hidden="true">↗</span>
+        <div className="programme-next-steps">
+          <article>
+            <span className="next-step-number">01</span>
+            <h3>Make an enquiry</h3>
+            <p>
+              Tell the team which programme interests you and what
+              information you would like to receive.
+            </p>
+          </article>
+
+          <article>
+            <span className="next-step-number">02</span>
+            <h3>Understand the details</h3>
+            <p>
+              Ask about eligibility, availability, activities and
+              any relevant participation requirements.
+            </p>
+          </article>
+
+          <article>
+            <span className="next-step-number">03</span>
+            <h3>Find your way to contribute</h3>
+            <p>
+              Discuss appropriate ways to participate, collaborate
+              or support NCIM's work.
+            </p>
+          </article>
+        </div>
+
+        <Link to="/contact" className="programmes-primary-link">
+          Contact NCIM <span>↗</span>
         </Link>
       </section>
 
-      {/* STORIES */}
-      <section className="events-stories-section">
-        <div className="events-stories-image">
-          <img
-            src="/media/events/community-moments.jpg"
-            alt="People sharing a community experience"
-            loading="lazy"
-          />
-        </div>
-
-        <div className="events-stories-copy">
-          <p className="events-section-label">Beyond the event</p>
-          <h2>Every experience has a story.</h2>
+      <section className="programmes-story-link">
+        <div>
+          <span className="programmes-kicker">
+            BEYOND THE PROGRAMME DESCRIPTION
+          </span>
+          <h2>Discover the people and experiences behind the work.</h2>
           <p>
-            Discover the experiences, progress and people behind NCIM's work
-            through stories and impact updates.
+            Read approved stories and updates to learn more about
+            NCIM's activities and the experiences of the communities
+            connected to its work.
           </p>
-
-          <Link className="events-button events-button-dark" to="/stories">
-            Stories & impact <span aria-hidden="true">↗</span>
-          </Link>
         </div>
+
+        <Link to="/stories" className="programmes-story-button">
+          Explore Stories & Impact <span>→</span>
+        </Link>
       </section>
     </main>
   );

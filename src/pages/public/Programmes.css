@@ -1,249 +1,657 @@
 
 /* =========================================
-   NCIM EVENTS — IMAGE & LAYOUT REFINEMENT
+   NCIM PROGRAMMES — EDITORIAL DIRECTORY
    ========================================= */
 
-/* Keep the page visually consistent with NCIM */
-.events-page {
-  background: var(--ivory, #f7f2e8);
-  color: var(--charcoal, #252525);
+.programmes-page {
+  overflow: clip;
+  background: var(--ivory);
+  color: var(--charcoal);
 }
 
-.events-page img {
+.programmes-page * {
+  box-sizing: border-box;
+}
+
+/* Masthead */
+
+.programmes-masthead {
+  padding: 25px 7% 0;
+  background: var(--green);
+  color: var(--white);
+}
+
+.programmes-masthead-top,
+.programmes-masthead-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  color: #e4dfd2;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.programmes-masthead-main {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  align-items: end;
+  gap: 60px;
+  padding: 80px 0 75px;
+}
+
+.programmes-kicker {
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  line-height: 1.8;
+}
+
+.programmes-masthead h1 {
+  margin: 22px 0 0;
+  color: var(--white);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(3rem, 6.3vw, 6.1rem);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.065em;
+}
+
+.programmes-masthead h1 span {
+  color: var(--gold);
+}
+
+.programmes-masthead-description {
+  max-width: 440px;
+  padding-bottom: 8px;
+}
+
+.programmes-masthead-description p {
+  margin: 0 0 30px;
+  color: #f0ebdf;
+  font-size: 1.02rem;
+  line-height: 1.9;
+}
+
+.programmes-masthead-description a {
+  display: inline-flex;
+  gap: 18px;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--gold);
+  color: var(--white);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-decoration: none;
+}
+
+.programmes-masthead-description a span {
+  color: var(--gold);
+  font-size: 1.1rem;
+}
+
+.programmes-masthead-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+  border-bottom: 0;
+}
+
+/* Programme directory */
+
+.programme-directory {
+  display: grid;
+  grid-template-columns: 0.75fr repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  padding: 0 7%;
+  border-bottom: 1px solid #e2dacb;
+  background: white;
+}
+
+.programme-directory-label {
+  align-self: center;
+  padding: 22px 15px 22px 0;
+  color: #756e61;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+
+.programme-directory a {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 24px 14px;
+  border-left: 1px solid #e9e2d6;
+  color: var(--green);
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.programme-directory a:hover {
+  background: var(--ivory);
+}
+
+.programme-directory a span:first-child {
+  flex-shrink: 0;
+  color: #a17c22;
+  font-size: 0.7rem;
+}
+
+.programme-directory a span:last-child {
+  flex-shrink: 0;
+  color: #a17c22;
+}
+
+/* Editorial introduction */
+
+.programmes-editorial-intro {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 60px;
+  padding: 85px 9%;
+  background: var(--ivory);
+}
+
+.programmes-section-index {
+  display: block;
+  color: #94701d;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+}
+
+.programmes-editorial-intro h2,
+.programmes-information h2,
+.programmes-story-link h2 {
+  margin: 0 0 20px;
+  color: var(--green);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.4rem);
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+}
+
+.programmes-editorial-intro p,
+.programmes-information-heading > p,
+.programmes-story-link p {
+  max-width: 720px;
+  margin: 0;
+  color: #514f49;
+  line-height: 1.9;
+}
+
+/* Alternating programme features */
+
+.programme-features {
+  padding: 0 7%;
+  background: var(--ivory);
+}
+
+.programme-feature {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 75px;
+  background: white;
+  border: 1px solid #e5ddce;
+}
+
+.programme-feature:last-child {
+  margin-bottom: 0;
+}
+
+.programme-feature-reverse .programme-feature-image {
+  order: 2;
+}
+
+.programme-feature-reverse .programme-feature-content {
+  order: 1;
+}
+
+.programme-feature-image {
+  position: relative;
+  min-height: 590px;
+  overflow: hidden;
+  background: #d9d0bd;
+}
+
+.programme-feature-image img {
   display: block;
   width: 100%;
   height: 100%;
+  min-height: 590px;
   object-fit: cover;
-  object-position: center;
+  transition: transform 0.45s ease;
 }
 
-/* 1. Smaller, balanced masthead */
-.events-masthead {
-  grid-template-columns: 1.05fr 0.85fr;
-  min-height: 0;
-}
-
-.events-masthead-copy {
-  padding: clamp(38px, 5vw, 72px);
-}
-
-.events-masthead h1 {
-  font-size: clamp(3rem, 5vw, 5.2rem);
-}
-
-.events-masthead-visual {
-  min-height: 0;
-  height: 440px;
-  align-self: center;
-  margin: 35px 35px 35px 0;
-  overflow: hidden;
-}
-
-.events-image-caption {
-  right: 16px;
-  bottom: 16px;
-  left: 16px;
-}
-
-/* 2. More restrained section spacing */
-.events-introduction,
-.events-activities-section {
-  padding-top: 75px;
-  padding-bottom: 75px;
-}
-
-.events-calendar-section {
-  padding-top: 65px;
-  padding-bottom: 65px;
-}
-
-/* 3. Activity images: consistent, medium-sized */
-.events-activity,
-.events-activity:nth-child(even) {
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
-  gap: clamp(28px, 5vw, 65px);
-  padding: 28px 0;
-  align-items: center;
-}
-
-.events-activity:nth-child(even) .events-activity-image {
-  order: 0;
-}
-
-.events-activity-image {
-  width: 100%;
-  height: 250px;
-  overflow: hidden;
-  border-radius: 3px;
-}
-
-.events-activity-image img {
-  transition: transform 250ms ease;
-}
-
-.events-activity:hover .events-activity-image img {
+.programme-feature:hover .programme-feature-image img {
   transform: scale(1.025);
 }
 
-.events-activity-copy {
-  max-width: 500px;
-  padding: 12px 0;
+.programme-image-number {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  background: var(--green);
+  color: var(--gold);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
 }
 
-.events-activity-copy h3 {
-  font-size: clamp(1.6rem, 2.5vw, 2.35rem);
+.programme-image-note {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  left: 22px;
+  margin: 0;
+  padding: 17px 20px;
+  border-left: 4px solid var(--gold);
+  background: rgba(255, 255, 255, 0.96);
+  color: var(--green);
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1.6;
 }
 
-/* 4. Smaller Stories image */
-.events-stories-section {
-  grid-template-columns: 0.9fr 1fr;
+.programme-feature-content {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(30px, 4vw, 62px);
+}
+
+.programme-category {
+  color: #94701d;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  line-height: 1.8;
+}
+
+.programme-feature-content h2 {
+  margin: 18px 0;
+  color: var(--green);
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+.programme-introduction {
+  margin: 0 0 26px;
+  color: #514f49;
+  line-height: 1.9;
+}
+
+.programme-audience {
+  width: 100%;
+  margin-bottom: 25px;
+  padding: 17px 19px;
+  border-left: 3px solid var(--gold);
+  background: var(--ivory);
+}
+
+.programme-audience > span {
+  display: block;
+  margin-bottom: 7px;
+  color: #94701d;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.programme-audience p {
+  margin: 0;
+  color: var(--green);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.programme-feature-content h3 {
+  margin: 0 0 16px;
+  color: var(--green);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.05rem;
+}
+
+.programme-focus-list {
+  display: grid;
+  width: 100%;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.programme-focus-list li {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  color: #514f49;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.programme-focus-list li span {
+  color: #a17c22;
+  font-weight: 800;
+}
+
+.programme-enquiry {
+  display: flex;
+  width: 100%;
   align-items: center;
-  gap: 0;
-  padding: 40px clamp(24px, 6vw, 85px);
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 19px;
+  border-top: 1px solid #e5ddce;
+  color: var(--green);
+  font-size: 0.87rem;
+  font-weight: 800;
+  line-height: 1.6;
+  text-decoration: none;
 }
 
-.events-stories-image {
-  height: 320px;
-  min-height: 0;
-  overflow: hidden;
-  border-radius: 3px;
+.programme-enquiry span {
+  flex-shrink: 0;
+  color: #a17c22;
+  font-size: 1.2rem;
 }
 
-.events-stories-copy {
-  padding: 35px clamp(25px, 4vw, 60px);
+.programme-enquiry:hover {
+  color: #94701d;
 }
 
-/* 5. Avoid the large footer-like appearance */
-.events-approach-section {
-  padding: 65px clamp(24px, 7vw, 100px);
+/* Practical next steps */
+
+.programmes-information {
+  padding: 95px 9%;
+  background: white;
+}
+
+.programmes-information-heading {
+  display: grid;
+  grid-template-columns: 0.7fr 1.3fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.programmes-information-heading > p {
+  grid-column: 2;
+  margin-top: -5px;
+}
+
+.programmes-information-heading h2 {
+  margin-bottom: 18px;
+}
+
+.programme-next-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 55px;
+}
+
+.programme-next-steps article {
+  padding: 28px 0 0;
+  border-top: 2px solid #d9c38d;
+}
+
+.next-step-number {
+  color: #94701d;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.programme-next-steps h3 {
+  margin: 20px 0 12px;
+  color: var(--green);
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.25rem;
+}
+
+.programme-next-steps p {
+  margin: 0;
+  color: #514f49;
+  font-size: 0.92rem;
+  line-height: 1.85;
+}
+
+.programmes-primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 30px;
+  margin-top: 38px;
+  padding: 16px 22px;
+  background: var(--green);
+  color: white;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.programmes-primary-link span {
+  color: var(--gold);
+}
+
+/* Stories link */
+
+.programmes-story-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  padding: 75px 9%;
   background: #eee7d8;
-  color: var(--charcoal, #252525);
 }
 
-.events-approach-heading h2 {
-  font-size: clamp(2.3rem, 4vw, 4rem);
-  color: var(--charcoal, #252525);
+.programmes-story-link > div {
+  max-width: 730px;
 }
 
-.events-approach-heading h2 em {
-  color: var(--green, #173f35);
+.programmes-story-link h2 {
+  margin-top: 17px;
 }
 
-.events-approach-heading .events-section-label,
-.events-principle > span {
-  color: #806522;
+.programmes-story-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 22px;
+  padding: 17px 22px;
+  background: var(--green);
+  color: white;
+  font-size: 0.87rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
-.events-principle {
-  border-top-color: #d1c8b6;
+.programmes-story-button span {
+  color: var(--gold);
 }
 
-.events-principle h3 {
-  color: var(--green, #173f35);
-}
+/* Responsive layouts */
 
-.events-principle p {
-  color: #50564e;
-}
-
-/* 6. More compact final contact section */
-.events-contact-strip {
-  padding: 45px clamp(24px, 7vw, 100px);
-}
-
-/* Tablet */
-@media (max-width: 900px) {
-  .events-masthead {
-    grid-template-columns: 1fr 0.85fr;
+@media (max-width: 1050px) {
+  .programme-directory {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .events-masthead-copy {
-    padding: 38px 28px;
+  .programme-directory-label {
+    grid-column: 1 / -1;
+    padding: 20px 0 10px;
   }
 
-  .events-masthead-visual {
-    height: 350px;
-    margin: 25px 25px 25px 0;
+  .programme-directory a {
+    border-top: 1px solid #e9e2d6;
   }
 
-  .events-activity,
-  .events-activity:nth-child(even) {
-    grid-template-columns: 0.85fr 1fr;
-    gap: 28px;
+  .programme-feature-image,
+  .programme-feature-image img {
+    min-height: 500px;
   }
 
-  .events-activity-image {
-    height: 220px;
-  }
-
-  .events-stories-section {
+  .programme-feature-content {
     padding: 30px;
   }
 
-  .events-stories-image {
-    height: 280px;
+  .programmes-information-heading {
+    gap: 35px;
   }
 }
 
-/* Mobile */
-@media (max-width: 700px) {
-  .events-masthead {
+@media (max-width: 760px) {
+  .programmes-masthead {
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+
+  .programmes-masthead-top,
+  .programmes-masthead-footer {
+    font-size: 0.61rem;
+    letter-spacing: 0.07em;
+  }
+
+  .programmes-masthead-main {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 60px 0;
+  }
+
+  .programmes-masthead h1 {
+    font-size: clamp(2.8rem, 10vw, 4.5rem);
+  }
+
+  .programme-directory {
+    padding-right: 6%;
+    padding-left: 6%;
+  }
+
+  .programme-directory a {
+    padding: 17px 10px;
+    font-size: 0.75rem;
+  }
+
+  .programmes-editorial-intro {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 60px 7%;
+  }
+
+  .programme-features {
+    padding: 0 6%;
+  }
+
+  .programme-feature {
+    grid-template-columns: 1fr;
+    margin-bottom: 45px;
+  }
+
+  .programme-feature-reverse .programme-feature-image,
+  .programme-feature-reverse .programme-feature-content {
+    order: initial;
+  }
+
+  .programme-feature-image,
+  .programme-feature-image img {
+    min-height: 360px;
+    height: 360px;
+  }
+
+  .programme-feature-content {
+    padding: 30px 25px;
+  }
+
+  .programme-feature-content h2 {
+    font-size: clamp(1.9rem, 7vw, 2.6rem);
+  }
+
+  .programmes-information {
+    padding: 65px 7%;
+  }
+
+  .programmes-information-heading {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .programmes-information-heading > p {
+    grid-column: auto;
+    margin-top: 0;
+  }
+
+  .programme-next-steps {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 40px;
+  }
+
+  .programmes-story-link {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 25px;
+    padding: 60px 7%;
+  }
+}
+
+@media (max-width: 480px) {
+  .programmes-masthead-top span:last-child,
+  .programmes-masthead-footer span:last-child {
+    text-align: right;
+  }
+
+  .programme-directory {
     grid-template-columns: 1fr;
   }
 
-  .events-masthead-copy {
-    padding: 48px 24px 35px;
+  .programme-directory-label {
+    grid-column: auto;
   }
 
-  .events-masthead-visual {
-    width: auto;
-    height: 280px;
-    min-height: 0;
-    margin: 0 24px 25px;
+  .programme-directory a {
+    border-right: 1px solid #e9e2d6;
+    border-left: 0;
   }
 
-  .events-introduction,
-  .events-activities-section {
-    padding: 55px 24px;
+  .programme-feature-image,
+  .programme-feature-image img {
+    min-height: 300px;
+    height: 300px;
   }
 
-  .events-calendar-section {
-    padding: 50px 24px;
+  .programme-image-note {
+    right: 12px;
+    bottom: 12px;
+    left: 12px;
+    padding: 13px 15px;
   }
 
-  .events-activity,
-  .events-activity:nth-child(even) {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 24px 0;
+  .programme-feature-content {
+    padding: 25px 20px;
   }
 
-  .events-activity-image {
-    height: 230px;
-  }
-
-  .events-activity-copy {
-    padding: 8px 0 4px;
-  }
-
-  .events-stories-section {
-    grid-template-columns: 1fr;
-    padding: 24px;
-  }
-
-  .events-stories-image {
-    height: 250px;
-  }
-
-  .events-stories-copy {
-    padding: 30px 0 15px;
-  }
-
-  .events-approach-section {
-    padding: 55px 24px;
-  }
-
-  .events-contact-strip {
-    padding: 40px 24px;
+  .programmes-primary-link {
+    width: 100%;
+    justify-content: space-between;
   }
 }
