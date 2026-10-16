@@ -1,0 +1,114 @@
+
+/* EVENTS PAGE — visual refinements */
+
+/* Make the approach section feel like page content, not a footer */
+.events-approach-section {
+  background: #eee7d8;
+  color: #252525;
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.events-approach-heading .events-section-label {
+  color: #806522;
+}
+
+.events-approach-heading h2 {
+  color: #252525;
+}
+
+.events-approach-heading h2 em {
+  color: #173f35;
+}
+
+.events-principle {
+  border-top-color: #cfc6b4;
+}
+
+.events-principle > span {
+  color: #806522;
+}
+
+.events-principle h3 {
+  color: #173f35;
+}
+
+.events-principle p {
+  color: #50564e;
+}
+
+/* Improve readability in the main sections */
+.events-introduction-grid > div p,
+.events-activities-heading > p,
+.events-activity-copy > p:not(.events-activity-category),
+.events-stories-copy > p:not(.events-section-label),
+.events-contact-strip > div > p:last-child {
+  color: #454b44;
+}
+
+/* Ensure the top section keeps readable white text */
+.events-masthead-copy {
+  background: #173f35;
+  color: #ffffff;
+}
+
+.events-lead {
+  color: #f1f0e9;
+}
+
+/* Improve spacing between the major sections */
+.events-calendar-section,
+.events-activities-section,
+.events-introduction,
+.events-approach-section {
+  scroll-margin-top: 90px;
+}
+
+.events-activities-section {
+  background: #f7f2e8;
+}
+
+.events-calendar-section {
+  background: #ffffff;
+}
+
+.events-stories-section {
+  background: #ffffff;
+}
+
+/* Make activity photos crop consistently */
+.events-activity-image,
+.events-stories-image,
+.events-masthead-visual {
+  overflow: hidden;
+}
+
+.events-activity-image img,
+.events-stories-image img,
+.events-masthead-visual > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Keep links visible against their backgrounds */
+.events-masthead-actions .events-text-link {
+  color: #ffffff;
+}
+
+.events-activity-copy .events-text-link,
+.events-notice-link {
+  color: #173f35;
+}
+
+@media (max-width: 700px) {
+  .events-approach-section {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+
+  .events-stories-image {
+    min-height: 300px;
+  }
+}
