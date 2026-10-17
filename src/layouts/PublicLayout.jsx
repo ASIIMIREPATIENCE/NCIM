@@ -1,5 +1,5 @@
 
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, Link } from "react-router-dom";
 
 const navigation = [
   { label: "Home", path: "/" },
@@ -15,9 +15,12 @@ export default function PublicLayout() {
   return (
     <>
       <header className="site-header">
-        <NavLink to="/" className="brand">
-          <span className="brand-mark">N</span>
-          <span>
+        <NavLink to="/" className="brand" aria-label="NCIM home">
+          <span className="brand-mark" aria-hidden="true">
+            N
+          </span>
+
+          <span className="brand-text">
             <strong>NCIM</strong>
             <small>Building Hope. Changing Futures.</small>
           </span>
@@ -37,25 +40,33 @@ export default function PublicLayout() {
             </NavLink>
           ))}
 
-          <NavLink to="/donate" className="donate-button">
+          <Link
+            to="/get-involved#donate"
+            className="donate-button"
+          >
             Donate
-          </NavLink>
+          </Link>
         </nav>
       </header>
 
-      <main>
+      <main className="site-main">
         <Outlet />
       </main>
 
       <footer className="site-footer">
-        <div>
+        <div className="footer-brand">
           <strong>NCIM</strong>
           <p>Building Hope. Changing Futures.</p>
         </div>
-        <p>
-          Supporting children, empowering women and strengthening communities.
+
+        <p className="footer-mission">
+          Supporting children, empowering women and strengthening
+          communities.
         </p>
-        <p>© {new Date().getFullYear()} NCIM. All rights reserved.</p>
+
+        <p className="footer-copyright">
+          © {new Date().getFullYear()} NCIM. All rights reserved.
+        </p>
       </footer>
     </>
   );

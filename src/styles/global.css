@@ -1,24 +1,77 @@
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Montserrat:wght@500;600;700;800&display=swap");
+
+/* =========================================================
+   1. GLOBAL SETTINGS AND BRAND VARIABLES
+   ========================================================= */
 
 :root {
   font-family: "Inter", sans-serif;
   color: #252525;
   background: #f7f2e8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+
   --green: #173f35;
+  --green-light: #245849;
   --gold: #c9a23f;
+  --gold-light: #f0d681;
   --ivory: #f7f2e8;
   --charcoal: #252525;
   --white: #ffffff;
+  --muted: #62665f;
+  --border: #e8e1d3;
+
+  --font-heading: "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --container-padding: 7%;
+  --section-space: 88px;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}
+
 body {
-  margin: 0;
   min-width: 320px;
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background: var(--ivory);
+  line-height: 1.6;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font-size: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 a {
@@ -26,59 +79,116 @@ a {
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+}
+
+p {
+  overflow-wrap: break-word;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+::selection {
+  color: var(--white);
+  background: var(--green);
+}
+
+/* =========================================================
+   2. SHARED PUBLIC WEBSITE LAYOUT
+   ========================================================= */
+
 .site-header {
+  position: relative;
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 20px;
+  gap: 24px;
   padding: 18px 5%;
-  background: var(--white);
   border-bottom: 1px solid #e9e1d1;
+  background: var(--white);
 }
 
 .brand {
-  display: flex;
+  display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .brand-mark {
   display: grid;
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
   place-items: center;
-  width: 44px;
-  height: 44px;
   border-radius: 50%;
-  background: var(--green);
   color: var(--gold);
-  font-size: 24px;
+  background: var(--green);
+  font-family: var(--font-heading);
+  font-size: 29px;
   font-weight: 800;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
 }
 
 .brand strong,
 .site-footer strong {
   display: block;
-  font-family: "Montserrat", sans-serif;
-  font-size: 22px;
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.brand strong {
   color: var(--green);
 }
 
 .brand small {
   display: block;
   margin-top: 4px;
-  font-size: 10px;
+  color: var(--charcoal);
+  font-size: 11px;
+  line-height: 1.5;
 }
 
 .main-nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 17px;
 }
 
 .nav-link {
-  font-size: 13px;
-  font-weight: 600;
+  position: relative;
+  padding: 9px 0;
+  color: var(--charcoal);
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  transition: color 0.2s ease;
 }
 
 .nav-link:hover,
@@ -86,22 +196,52 @@ a {
   color: #967018;
 }
 
-.donate-button {
-  padding: 12px 20px;
-  border-radius: 5px;
+.nav-link.active::after {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  height: 2px;
   background: var(--gold);
+  content: "";
+}
+
+.donate-button {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 12px 24px;
+  border: 1px solid var(--gold);
+  border-radius: 5px;
   color: var(--charcoal);
-  font-weight: 700;
+  background: var(--gold);
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.donate-button:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+}
+
+.site-main {
+  min-height: 50vh;
 }
 
 .site-footer {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  align-items: center;
+  gap: 35px;
   padding: 40px 5%;
-  background: var(--green);
   color: var(--white);
+  background: var(--green);
 }
 
 .site-footer strong {
@@ -110,34 +250,29 @@ a {
 
 .site-footer p {
   max-width: 360px;
+  margin: 6px 0 0;
   font-size: 13px;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
-@media (max-width: 600px) {
-  .site-header {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .main-nav {
-    gap: 12px;
-  }
-
-  .site-footer {
-    flex-direction: column;
-  }
+.footer-mission {
+  text-align: center;
 }
 
+.footer-copyright {
+  text-align: right;
+}
 
-/* HOME PAGE */
+/* =========================================================
+   3. REUSABLE HOMEPAGE ELEMENTS
+   ========================================================= */
 
 .home-page {
   background: var(--ivory);
 }
 
 .section-padding {
-  padding: 88px 7%;
+  padding: var(--section-space) var(--container-padding);
 }
 
 .eyebrow {
@@ -147,30 +282,20 @@ a {
   font-weight: 800;
   letter-spacing: 2px;
   line-height: 1.7;
+  text-transform: uppercase;
 }
 
-.home-hero {
-  display: grid;
-  grid-template-columns: 1fr 0.9fr;
-  align-items: center;
-  gap: 55px;
-  padding: 75px 7%;
-  min-height: 600px;
-}
-
-.hero-content h1 {
-  margin: 20px 0;
+.section-heading h2,
+.purpose-content h2,
+.stories-copy h2,
+.involve-section h2 {
+  margin: 12px 0 18px;
   color: var(--green);
-  font-size: clamp(42px, 5vw, 72px);
-  line-height: 1.08;
-  letter-spacing: -2.5px;
+  font-size: clamp(28px, 3vw, 42px);
+  letter-spacing: -1px;
+  line-height: 1.2;
 }
 
-.hero-content h1 span {
-  color: #a87e1e;
-}
-
-.hero-content > p,
 .section-heading > p,
 .purpose-content > p,
 .stories-copy > p {
@@ -179,9 +304,55 @@ a {
   line-height: 1.9;
 }
 
-.hero-content > p {
-  max-width: 550px;
-  font-size: 17px;
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 48px;
+  padding: 14px 21px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-gold {
+  color: var(--charcoal);
+  background: var(--gold);
+}
+
+.button-outline {
+  border-color: var(--green);
+  color: var(--green);
+  background: transparent;
+}
+
+.button-outline:hover {
+  color: var(--white);
+  background: var(--green);
+}
+
+.button-dark {
+  color: var(--white);
+  background: var(--green);
+}
+
+.button-dark:hover {
+  background: var(--green-light);
+}
+
+.button-light {
+  color: var(--green);
+  background: var(--white);
 }
 
 .hero-actions {
@@ -191,87 +362,103 @@ a {
   margin-top: 28px;
 }
 
-.button {
-  display: inline-flex;
+/* =========================================================
+   4. HOMEPAGE HERO
+   ========================================================= */
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
   align-items: center;
-  justify-content: center;
-  min-height: 48px;
-  padding: 14px 21px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: 700;
-  text-align: center;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.button:hover {
-  transform: translateY(-2px);
-}
-
-.button-gold {
-  background: var(--gold);
-  color: var(--charcoal);
-}
-
-.button-outline {
-  border-color: var(--green);
-  color: var(--green);
-}
-
-.button-dark {
-  background: var(--green);
+  gap: 55px;
+  min-height: 600px;
+  padding: 75px 7%;
   color: var(--white);
+  background: linear-gradient(
+    110deg,
+    rgba(23, 63, 53, 0.97),
+    rgba(23, 63, 53, 0.88)
+  );
 }
 
-.button-light {
-  background: var(--white);
-  color: var(--green);
+.hero-content {
+  min-width: 0;
+}
+
+.hero-content .eyebrow {
+  color: var(--gold-light);
+}
+
+.hero-content h1 {
+  margin: 20px 0;
+  color: var(--white);
+  font-size: clamp(42px, 5vw, 72px);
+  letter-spacing: -2.5px;
+  line-height: 1.08;
+}
+
+.hero-content h1 span {
+  color: var(--gold);
+}
+
+.hero-content > p {
+  max-width: 550px;
+  color: #e4eae5;
+  font-size: 17px;
+  line-height: 1.9;
 }
 
 .hero-note {
+  max-width: 520px;
   margin-top: 32px;
   padding-left: 14px;
   border-left: 3px solid var(--gold);
-  color: #6a6a60;
+  color: #e0e6df;
   font-size: 12px;
   line-height: 1.8;
 }
 
 .hero-image {
   position: relative;
+  min-width: 0;
   min-height: 430px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #d8dfd4;
 }
 
 .hero-image > img {
+  display: block;
   width: 100%;
   height: 430px;
   object-fit: cover;
-  border-radius: 5px;
+  object-position: center;
 }
 
 .hero-image-caption {
   position: absolute;
-  right: -18px;
-  bottom: 25px;
-  left: 22px;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
   display: flex;
   align-items: center;
   gap: 14px;
   padding: 20px;
-  background: white;
-  box-shadow: 0 12px 35px #173f3518;
+  border-radius: 8px;
+  color: var(--charcoal);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 12px 35px rgba(23, 63, 53, 0.1);
 }
 
 .caption-mark {
   display: grid;
-  place-items: center;
   flex-shrink: 0;
   width: 42px;
   height: 42px;
+  place-items: center;
   border-radius: 50%;
-  background: var(--ivory);
   color: #987019;
+  background: var(--ivory);
   font-size: 23px;
 }
 
@@ -287,22 +474,15 @@ a {
   line-height: 1.6;
 }
 
+/* =========================================================
+   5. HOMEPAGE INTRODUCTION
+   ========================================================= */
+
 .home-intro {
   display: grid;
-  grid-template-columns: 0.8fr 1.2fr;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: 65px;
-  background: white;
-}
-
-.section-heading h2,
-.purpose-content h2,
-.stories-copy h2,
-.involve-section h2 {
-  margin: 12px 0 18px;
-  color: var(--green);
-  font-size: clamp(28px, 3vw, 42px);
-  line-height: 1.2;
-  letter-spacing: -1px;
+  background: var(--white);
 }
 
 .intro-content > p {
@@ -330,6 +510,10 @@ a {
   transform: translateX(4px);
 }
 
+/* =========================================================
+   6. HOMEPAGE SECTION HEADINGS
+   ========================================================= */
+
 .section-topline {
   display: flex;
   align-items: flex-end;
@@ -355,6 +539,10 @@ a {
   margin-bottom: 7px;
 }
 
+/* =========================================================
+   7. HOMEPAGE PROGRAMMES
+   ========================================================= */
+
 .programme-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -362,27 +550,38 @@ a {
 }
 
 .programme-card {
+  min-width: 0;
   overflow: hidden;
-  background: white;
-  border: 1px solid #e8e1d3;
+  border: 1px solid var(--border);
   border-radius: 5px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: var(--white);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .programme-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px #173f3510;
+  box-shadow: 0 12px 28px rgba(23, 63, 53, 0.1);
 }
 
 .programme-image {
   position: relative;
-  height: 205px;
+  height: 220px;
+  overflow: hidden;
+  background: #e6e0d2;
 }
 
 .programme-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.programme-card:hover .programme-image img {
+  transform: scale(1.04);
 }
 
 .programme-number {
@@ -390,8 +589,8 @@ a {
   top: 12px;
   left: 12px;
   padding: 8px 10px;
-  background: var(--gold);
   color: var(--charcoal);
+  background: var(--gold);
   font-size: 12px;
   font-weight: 800;
 }
@@ -408,15 +607,13 @@ a {
   text-transform: uppercase;
 }
 
-.programme-body h3,
-.activity-card h3 {
+.programme-body h3 {
   color: var(--green);
   font-size: 18px;
   line-height: 1.45;
 }
 
-.programme-body p,
-.activity-card p {
+.programme-body p {
   color: #62655f;
   font-size: 13px;
   line-height: 1.85;
@@ -426,17 +623,24 @@ a {
   font-size: 12px;
 }
 
+/* =========================================================
+   8. HOMEPAGE PURPOSE SECTION
+   ========================================================= */
+
 .home-purpose {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   background: #eae5d8;
 }
 
 .purpose-image {
+  min-width: 0;
   min-height: 470px;
+  overflow: hidden;
 }
 
 .purpose-image img {
+  display: block;
   width: 100%;
   height: 100%;
   min-height: 470px;
@@ -456,8 +660,12 @@ a {
   margin-top: 17px;
 }
 
+/* =========================================================
+   9. HOMEPAGE ACTIVITIES
+   ========================================================= */
+
 .activities-section {
-  background: white;
+  background: var(--white);
 }
 
 .activity-grid {
@@ -467,250 +675,40 @@ a {
 }
 
 .activity-card {
+  min-width: 0;
   padding: 30px;
-  border: 1px solid #e8e1d3;
+  border: 1px solid var(--border);
   background: var(--ivory);
 }
 
 .activity-icon {
   display: grid;
-  place-items: center;
   width: 48px;
   height: 48px;
+  place-items: center;
   border-radius: 50%;
-  background: #e9dfc6;
   color: #8d6815;
+  background: #e9dfc6;
   font-size: 24px;
 }
 
 .activity-card h3 {
-  margin-top: 22px;
+  color: var(--green);
+  font-size: 18px;
+  line-height: 1.45;
 }
 
-.stories-section {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  align-items: center;
-  gap: 65px;
-}
-
-.stories-copy .button {
-  margin-top: 17px;
-}
-
-.stories-image img {
-  width: 100%;
-  height: 390px;
-  object-fit: cover;
-  border-radius: 5px;
-}
-
-.involve-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 35px;
-  padding: 65px 7%;
-  background: var(--green);
-  color: white;
-}
-
-.involve-section .eyebrow {
-  color: var(--gold);
-}
-
-.involve-section h2 {
-  margin-bottom: 10px;
-  color: white;
-}
-
-.involve-section p {
-  max-width: 560px;
-  color: #e2e8e2;
-  font-size: 14px;
-  line-height: 1.9;
-}
-
-.involve-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-/* Responsive layouts */
-
-@media (max-width: 1100px) {
-  .home-hero {
-    gap: 30px;
-    padding-right: 5%;
-    padding-left: 5%;
-  }
-
-  .programme-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .programme-image {
-    height: 240px;
-  }
-
-  .section-padding {
-    padding: 70px 5%;
-  }
-}
-
-@media (max-width: 700px) {
-  .home-hero,
-  .home-intro,
-  .home-purpose,
-  .stories-section {
-    grid-template-columns: 1fr;
-  }
-
-  .home-hero {
-    padding: 55px 6%;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(38px, 10vw, 58px);
-    letter-spacing: -1.5px;
-  }
-
-  .hero-image,
-  .hero-image > img {
-    min-height: 320px;
-    height: 320px;
-  }
-
-  .hero-image-caption {
-    right: 10px;
-    left: 10px;
-    bottom: 12px;
-  }
-
-  .home-intro {
-    gap: 20px;
-  }
-
-  .section-topline {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .programme-grid,
-  .activity-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .programme-image {
-    height: 240px;
-  }
-
-  .purpose-image,
-  .purpose-image img {
-    min-height: 300px;
-    height: 300px;
-  }
-
-  .purpose-content {
-    padding: 50px 6%;
-  }
-
-  .stories-image img {
-    height: 300px;
-  }
-
-  .involve-section {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 50px 6%;
-  }
-}
-
-```css
-/* Ugandan-themed homepage additions */
-
-.home-hero {
-  background:
-    linear-gradient(110deg, rgba(23, 63, 53, 0.97), rgba(23, 63, 53, 0.88));
-}
-
-.home-hero .hero-content h1 span {
-  color: var(--gold);
-}
-
-.hero-image {
-  position: relative;
-  overflow: hidden;
-  border-radius: 18px;
-}
-
-.hero-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 420px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero-image-caption {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  left: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 18px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.94);
-  color: var(--charcoal);
-}
-
-.hero-image-caption p {
-  margin: 5px 0 0;
-  font-size: 0.9rem;
-}
-
-.caption-mark {
-  color: var(--gold);
-  font-size: 1.7rem;
-}
-
-.programme-image {
-  position: relative;
-  overflow: hidden;
-  background: #e6e0d2;
-}
-
-.programme-image img {
-  display: block;
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-
-.programme-card:hover .programme-image img {
-  transform: scale(1.04);
-}
-
-.purpose-image img,
-.stories-image img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 360px;
-  object-fit: cover;
+.activity-card p {
+  color: #62655f;
+  font-size: 13px;
+  line-height: 1.85;
 }
 
 .activity-feature-image {
   position: relative;
   overflow: hidden;
   margin: 28px 0;
-  border-radius: 16px;
+  border-radius: 12px;
   background: #e6e0d2;
 }
 
@@ -727,36 +725,85 @@ a {
   bottom: 0;
   left: 0;
   padding: 20px 24px;
-  color: white;
+  color: var(--white);
+  background: linear-gradient(
+    transparent,
+    rgba(0, 0, 0, 0.75)
+  );
   font-weight: 700;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
 }
 
-@media (max-width: 768px) {
-  .hero-image img {
-    min-height: 300px;
-  }
+/* =========================================================
+   10. HOMEPAGE STORIES
+   ========================================================= */
 
-  .programme-image img {
-    height: 220px;
-  }
-
-  .purpose-image img,
-  .stories-image img {
-    min-height: 280px;
-  }
-
-  .activity-feature-image img {
-    height: 240px;
-  }
+.stories-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: 65px;
 }
 
+.stories-copy .button {
+  margin-top: 17px;
+}
 
-/* ABOUT NCIM PAGE */
+.stories-image {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.stories-image img {
+  display: block;
+  width: 100%;
+  height: 390px;
+  object-fit: cover;
+}
+
+/* =========================================================
+   11. HOMEPAGE GET INVOLVED BANNER
+   ========================================================= */
+
+.involve-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+  padding: 65px 7%;
+  color: var(--white);
+  background: var(--green);
+}
+
+.involve-section .eyebrow {
+  color: var(--gold);
+}
+
+.involve-section h2 {
+  margin-bottom: 10px;
+  color: var(--white);
+}
+
+.involve-section p {
+  max-width: 560px;
+  color: #e2e8e2;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.involve-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* =========================================================
+   12. ABOUT NCIM PAGE
+   ========================================================= */
 
 .about-hero {
   display: grid;
-  grid-template-columns: 1fr 0.9fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
   align-items: center;
   gap: 48px;
   padding: 76px 7%;
@@ -766,7 +813,7 @@ a {
 .about-hero-copy h1 {
   margin: 18px 0;
   color: var(--green);
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2.5rem, 4.5vw, 4.5rem);
   line-height: 1.12;
 }
@@ -778,7 +825,15 @@ a {
 .about-hero-copy > p {
   max-width: 560px;
   margin-bottom: 28px;
+  color: var(--muted);
   line-height: 1.8;
+}
+
+.about-hero-image,
+.about-purpose-image {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
 }
 
 .about-hero-image img,
@@ -788,12 +843,11 @@ a {
   height: 100%;
   min-height: 380px;
   object-fit: cover;
-  border-radius: 18px;
 }
 
 .about-story {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 56px;
   background: var(--white);
 }
@@ -803,7 +857,7 @@ a {
 .about-accountability h2 {
   margin-top: 14px;
   color: var(--green);
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(1.8rem, 3vw, 3rem);
   line-height: 1.25;
 }
@@ -812,12 +866,13 @@ a {
 .about-purpose-copy p,
 .about-accountability p {
   margin-bottom: 18px;
+  color: var(--muted);
   line-height: 1.8;
 }
 
 .about-purpose-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
   gap: 56px;
   padding: 64px 7%;
@@ -833,29 +888,30 @@ a {
 
 .about-vision {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
 }
 
 .vision-card {
   padding: 36px;
-  border-radius: 16px;
+  border-radius: 8px;
   background: #eee7d8;
 }
 
 .vision-card h2 {
   margin: 18px 0 12px;
   color: var(--green);
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-heading);
 }
 
 .vision-card p {
+  color: var(--muted);
   line-height: 1.8;
 }
 
 .vision-card-dark {
-  background: var(--green);
   color: var(--white);
+  background: var(--green);
 }
 
 .vision-card-dark h2 {
@@ -887,9 +943,10 @@ a {
 }
 
 .about-value-card {
+  min-width: 0;
   padding: 26px 22px;
-  border: 1px solid #e8e1d4;
-  border-radius: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
   background: var(--ivory);
 }
 
@@ -901,10 +958,11 @@ a {
 .about-value-card h3 {
   margin: 18px 0 10px;
   color: var(--green);
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-heading);
 }
 
 .about-value-card p {
+  color: var(--muted);
   line-height: 1.7;
 }
 
@@ -922,8 +980,8 @@ a {
   align-items: center;
   gap: 24px;
   padding: 30px;
-  border: 1px dashed #c9a23f;
-  border-radius: 16px;
+  border: 1px dashed var(--gold);
+  border-radius: 8px;
   background: var(--white);
 }
 
@@ -934,9 +992,9 @@ a {
   height: 88px;
   place-items: center;
   border-radius: 50%;
-  background: var(--green);
   color: var(--gold);
-  font-family: "Montserrat", sans-serif;
+  background: var(--green);
+  font-family: var(--font-heading);
   font-weight: 800;
 }
 
@@ -947,6 +1005,7 @@ a {
 
 .leadership-placeholder p {
   margin: 0;
+  color: var(--muted);
   line-height: 1.7;
 }
 
@@ -964,14 +1023,14 @@ a {
 
 .about-cta {
   padding: 64px 7%;
-  background: var(--green);
   color: var(--white);
+  background: var(--green);
   text-align: center;
 }
 
 .about-cta h2 {
   margin: 16px 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-heading);
   font-size: clamp(2rem, 3.5vw, 3.3rem);
 }
 
@@ -985,11 +1044,40 @@ a {
   justify-content: center;
 }
 
-@media (max-width: 900px) {
-  .about-hero,
-  .about-story,
-  .about-purpose-section {
-    grid-template-columns: 1fr;
+/* =========================================================
+   13. RESPONSIVE TABLET LAYOUTS
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  :root {
+    --container-padding: 5%;
+    --section-space: 70px;
+  }
+
+  .site-header {
+    gap: 18px;
+  }
+
+  .main-nav {
+    gap: 13px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+  }
+
+  .home-hero {
+    gap: 30px;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+
+  .programme-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .programme-image {
+    height: 240px;
   }
 
   .about-values-grid {
@@ -997,25 +1085,271 @@ a {
   }
 }
 
-@media (max-width: 600px) {
-  .about-hero {
-    padding: 48px 6%;
+/* =========================================================
+   14. MOBILE AND SMALL TABLETS
+   ========================================================= */
+
+@media (max-width: 800px) {
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 18px 5%;
   }
 
-  .about-vision,
-  .about-values-grid {
+  .main-nav {
+    justify-content: flex-start;
+    width: 100%;
+    gap: 10px 16px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+  }
+
+  .donate-button {
+    min-height: 40px;
+    padding: 9px 16px;
+  }
+
+  .site-footer {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .footer-mission,
+  .footer-copyright {
+    text-align: left;
+  }
+
+  .home-hero,
+  .home-intro,
+  .home-purpose,
+  .stories-section,
+  .about-hero,
+  .about-story,
+  .about-purpose-section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-hero {
+    gap: 35px;
+    padding: 55px 6%;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(38px, 8vw, 58px);
+    letter-spacing: -1.5px;
+  }
+
+  .hero-image {
+    min-height: 320px;
+  }
+
+  .hero-image > img {
+    height: 320px;
+  }
+
+  .home-intro {
+    gap: 20px;
+  }
+
+  .section-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .programme-grid,
+  .activity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .programme-image {
+    height: 220px;
+  }
+
+  .purpose-image,
+  .purpose-image img {
+    min-height: 300px;
+    height: 300px;
+  }
+
+  .purpose-content {
+    padding: 50px 6%;
+  }
+
+  .stories-image img {
+    height: 300px;
+  }
+
+  .involve-section {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 50px 6%;
+  }
+
+  .about-hero {
+    gap: 32px;
+    padding: 50px 6%;
+  }
+
+  .about-hero-image img,
+  .about-purpose-image img {
+    min-height: 300px;
+  }
+
+  .about-vision {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .about-accountability {
     align-items: flex-start;
     flex-direction: column;
   }
+}
+
+/* =========================================================
+   15. SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .brand-mark {
+    width: 46px;
+    height: 46px;
+    font-size: 25px;
+  }
+
+  .brand strong {
+    font-size: 21px;
+  }
+
+  .brand small {
+    font-size: 10px;
+  }
+
+  .main-nav {
+    gap: 8px 13px;
+  }
+
+  .nav-link {
+    padding: 6px 0;
+    font-size: 12px;
+  }
+
+  .donate-button {
+    font-size: 13px;
+  }
+
+  .section-padding {
+    padding: 55px 6%;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(35px, 10vw, 48px);
+  }
+
+  .hero-actions,
+  .involve-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-actions .button,
+  .involve-actions .button {
+    width: 100%;
+  }
+
+  .hero-image,
+  .hero-image > img {
+    min-height: 270px;
+    height: 270px;
+  }
+
+  .hero-image-caption {
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .caption-mark {
+    width: 35px;
+    height: 35px;
+    font-size: 19px;
+  }
+
+  .hero-image-caption strong {
+    font-size: 12px;
+  }
+
+  .hero-image-caption p {
+    font-size: 11px;
+  }
+
+  .programme-grid,
+  .activity-grid,
+  .about-vision,
+  .about-values-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .programme-image {
+    height: 230px;
+  }
+
+  .activity-card,
+  .vision-card {
+    padding: 24px;
+  }
+
+  .activity-feature-image img {
+    height: 240px;
+  }
+
+  .about-hero {
+    padding: 45px 6%;
+  }
+
+  .about-hero-copy h1 {
+    font-size: clamp(2.2rem, 10vw, 3rem);
+  }
+
+  .about-hero-image img,
+  .about-purpose-image img {
+    min-height: 250px;
+  }
 
   .leadership-placeholder {
     align-items: flex-start;
     flex-direction: column;
+    padding: 23px;
+  }
+
+  .about-cta {
+    padding: 50px 6%;
+  }
+
+  .site-footer {
+    padding: 35px 6%;
   }
 }
 
+/* =========================================================
+   16. ACCESSIBILITY AND REDUCED MOTION
+   ========================================================= */
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
